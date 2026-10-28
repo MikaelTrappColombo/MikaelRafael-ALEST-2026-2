@@ -29,3 +29,13 @@ Constantes: private static final int LIMITE = 100;. É o uso mais comum, e a con
 Contadores ou dados compartilhados entre todos os objetos da classe, como o totalListas acima.
 
 Decisão: Aderi a utilizar isso por conta que caso seja necessário mudar o LIMITE eu consigo e é compartilhado com todas instancias que é o que eu preciso, devido aos dois deques usarem isso
+
+Erros percebidos: com copilot eu percebi que ele nao recomendava a criação do trailer e header mesmo sendo uma lista duplamente encadeada, além disso o autocomplete sugeriu na lista, criar um inserenafrente, no final e entre, oq achei desnecessário e deixei apenas o insere com indice, mas não é algo errado, apenas quis simplificar, de resto nao senti muitos problemas, ajudou a acelerar bastante o progresso e tirou minhas duvidas como mostrado acima alem de algumas outras, alias esses prompts foram respondidos pelo claude.
+
+Escrevi sem ia boa parte do código caso auto complete não esteja sendo considerado, porém sem o auto complete nao cheguei a escrever muita coisa devido a apenas desacelerar o progresso, apenas tive que pensar no que queria aderir e no que não aderir e modificar algo como o Node para o jeito que eu queria e que foi visto em aula
+
+Não achei nenhuma parte muito complexa no trabalho, tivemos que lidar com um trabalho 100 vezes maior e complexo na materia de POD, onde desenvolvemos o uso do git e tratamos com volumes de dados maiores e classes herdadas e coisas complexas na semana retrasada. Como parte importante nesse trabalho era identificar a estrutra de dados e implementa-la corretamente e acho que isso é o mais dificil devido a estruturas terem regras e ser necessário segui-las e saber modificar elas para usar em cada caso, acho que é isso que faz o trabalho mais dificil alem de entender cada peça sem falha.
+
+Para mim Deque é basicamente uma estrutura que mistura pilha e fila, juntas as duas e assim nasce o deque, uma classe muito util devido a poder entrar no fim e no inicio, além disso permite que gere o fluxo de dois lados, como por exemplo, quando sai do inicio vai para um lugar, e quando sai do final vai para outro, a mesma coisa para quando entra, isso permite ela ser muito versatil e funcional em diversos casos. 
+
+Acredito que a IA fez bem no trabalho a parte bruta de gerar o código e tirar dúvidas porém acredito que ela faz mal por deixar a mente preguiçosa e menos treinada, além, de em alguns casos ignorar as regras das estruras, por exemplo o copilot recomendou a criação do metodo insereEntre em um deque, coisa que não faz muito sentido, então acho esse um dos pontos negativos da ia
