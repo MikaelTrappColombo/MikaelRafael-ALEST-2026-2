@@ -1,7 +1,7 @@
 // Lista duplamente encadeada com nodos sentinela (header e trailer)
 public class Lista {
-    private final Node header = new Node(null);
-    private final Node trailer = new Node(null);
+    private Node header = new Node(null);
+    private Node trailer = new Node(null);
     private int tamanho;
 
     public Lista() {
@@ -23,7 +23,7 @@ public class Lista {
             throw new IllegalArgumentException("URL nula");
         }
         if (posicao < 0 || posicao > tamanho) {
-            throw new IllegalArgumentException("Posicao invalida: " + posicao);
+            throw new IndexOutOfBoundsException("Posicao invalida: " + posicao);
         }
 
         // nodo que ficara antes do novo (na posicao 0 e o header)
