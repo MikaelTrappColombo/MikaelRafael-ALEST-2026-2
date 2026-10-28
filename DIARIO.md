@@ -1,41 +1,45 @@
-Mikael: Comecei planejando utilizar deques, listas e pilha, porém fui alertado da professora que talvez utilizar apenas um deque para delimitar o tamanho poderia ter falhas, então decidimos usar 2 deques invés de um deque e uma pilha, deques para voltar e avançar e listas para histórico e favoritos. Meu planejamento inicial foi começar confirmando com a inteligencia artificial se era correto utilizar minhas estrutras de dados e se eram as melhores opções, após isso foi escrevendo o código do Node primeiro e depois da lista com ajuda do copilot oq agilizou muito o meu trabalho, gerando as classes em pouco tempo e caso eu sentisse falta de algo eu corrigia tranquilamente. 
+Planejamento inicial: (Seção 1)
+Começamos planejando utilizar as seguintes estruturas para cada comando: Deques para visitar e voltar. Pilha para avançar, e, listas para histórico e favoritar. Todavia, foi nos indicado utilizar deque para o comando avançar, e decidimos acatar a sugestão da professora. Nosso planejamento inicial foi começar confirmando com a inteligencia artificial se estávamos utilizando as estruturas de dados corretas para cada comando. Após isso começamos o código, fizemos primeiramente a classe Node, com ajuda do Copilot, o que agilizou muito o nosso trabalho, gerando as classes em pouco tempo e caso sentíssemos falta de algo corrigíamos tranquilamente. 
 
-1 Prompt usado: está correta está implementação da lista? quais pontos posso colocar a mais?
-Resposta: Sim, a lógica está correta. Os ponteiros do insere estão na ordem certa, com anterior e posterior guardados antes de religar. Os sentinelas funcionam em lista vazia, no início e no fim, sem casos especiais, e contem, tamanho e estaVazia também estão certos.
+Conversa com a IA: (Seção 2)
+*Toda a parte de IA foi feita pelo Sonnet 5.5 (Versão mais recente da IA generativa do Claude)
+
+1- Prompt usado: está correta está implementação da lista? Quais pontos posso colocar a mais?
+Resposta: Sim, a lógica está correta. Os ponteiros do insere estão na ordem certa, com anterior e posterior guardados antes de religar. Os sentinelas funcionam em lista vazia, no início e no fim, sem casos especiais, os métodos: contains, tamanho e "estaVazia" também estão certos.
 
 Pequenos ajustes
 toText com String +=: cada concatenação cria uma String nova, então fica O(n²). Com StringBuilder funciona igual e é mais eficiente.
-Posição inválida: IndexOutOfBoundsException descreve melhor o erro do que IllegalArgumentException. Para url == null, a IllegalArgumentException está certa.
+Posição inválida: IndexOutOfBoundsException, descreve melhor o erro do que IllegalArgumentException. Para url == null, a IllegalArgumentException está certa.
 Campos do Node: como você acessa anterior.next e atual.url direto, eles precisam ser visíveis para a Lista. Se Node for uma classe interna private static class Node, tudo funciona e fica bem encapsulado.
 
-Decisão: Aderi o indexOutOfBounds que o copilot tinha colocado como throwIlllegal sem motivo, como não aprendi o stringbuilder optei por deixar do jeito que estava devido a não saber mexer com isso
+Decisão: Aderimos o indexOutOfBounds que o copilot tinha colocado como throwIlllegal sem nenhum motivo aparente, como não aprendemos o stringbuilder optamos por deixar do jeito que já estava anteriormente.
 
-2 Prompt usado: É necessário manter o private final nesse codigo?
+2- Prompt usado: É necessário manter o private final nesse codigo?
 
 Resposta:
 Não é necessário. O código funciona sem eles, mas os dois são boas práticas. 
+Private mantém header, trailer e tamanho inacessíveis de fora da classe. Sem ele, o Browser poderia mexer direto em lista.tamanho ou trocar o header, e quebrar a lista sem passar pelos métodos. Funciona sem, mas você perde o encapsulamento, que costuma ser cobrado em Estruturas de Dados.
 
-private mantém header, trailer e tamanho inacessíveis de fora da classe. Sem ele, o Browser poderia mexer direto em lista.tamanho ou trocar o header, e quebrar a lista sem passar pelos métodos. Funciona sem, mas você perde o encapsulamento, que costuma ser cobrado em Estruturas de Dados.
+Decisão: Resolvemos manter sem o final por não ter o costume de usar e por ser um código pequeno e relativamente simples.
 
-Decisão: Resolvi manter sem o final por não ter o costume de usar e por ser um código "pequeno" e mais "simples" acredito que não seja necessário e o mantive sem
-
-3 Prompt: É possivel colocar um atributo como static e quando uso isso?
+3- Prompt usado: É possível colocar um atributo como static e quando uso isso?
 
 Resposta: Sim, é possível. Um atributo static pertence à classe, não a cada objeto: existe uma única cópia, compartilhada por todas as instâncias.
-
 Quando usar
 Constantes: private static final int LIMITE = 100;. É o uso mais comum, e a convenção é escrever em maiúsculas.
-
 Contadores ou dados compartilhados entre todos os objetos da classe, como o totalListas acima.
 
-Decisão: Aderi a utilizar isso por conta que caso seja necessário mudar o LIMITE eu consigo e é compartilhado com todas instancias que é o que eu preciso, devido aos dois deques usarem isso
+Decisão: Decidimos utilizar o static por conta que possibilita mudar o LIMITE se necessário, além disso o atributo é compartilhado com todas instâncias, isso facilita nosso trabalho devido aos dois deques utilizarem esse mesmo atributo.
 
-Erros percebidos: com copilot eu percebi que ele nao recomendava a criação do trailer e header mesmo sendo uma lista duplamente encadeada, além disso o autocomplete sugeriu na lista, criar um inserenafrente, no final e entre, oq achei desnecessário e deixei apenas o insere com indice, mas não é algo errado, apenas quis simplificar, de resto nao senti muitos problemas, ajudou a acelerar bastante o progresso e tirou minhas duvidas como mostrado acima alem de algumas outras, alias esses prompts foram respondidos pelo claude.
+Erros encontrados e como foram corrigidos: (Seção 3)
+Com copilot, percebemos que ele não recomendava a criação do trailer e header mesmo sendo uma lista duplamente encadeada, além disso ele também sugeriu para, nas listas, criar métodos para inserir na frente, numa posição index, e no final. Nós achamos tais sugestões desnecessárias e deixamos apenas o insere com índice, para simplificar, de resto não percebemos muitos problemas, ajudou a acelerar bastante o processo e tirou nossas dúvidas como mostrado acima.
 
-Escrevi sem ia boa parte do código caso auto complete não esteja sendo considerado, porém sem o auto complete nao cheguei a escrever muita coisa devido a apenas desacelerar o progresso, apenas tive que pensar no que queria aderir e no que não aderir e modificar algo como o Node para o jeito que eu queria e que foi visto em aula
+Partes do Código que você escreveu sem IA: (Seção 4)
+Escrevemos sem IA boa parte do código, mais especificamente as classe Node, Deque e Lista. Contudo, deixamos o autocomplete do VSCODE ligado para acelerar o processo, sempre atentado para as sugestões que nos eram passadas. A maioria das sugestões não foram aderidas pelo fato de serem muito genéricas, e, diferente do que nos foi ensinado durante as aulas. As classes Browser e App tiveram o uso de IA generativa.
 
-Não achei nenhuma parte muito complexa no trabalho, tivemos que lidar com um trabalho 100 vezes maior e complexo na materia de POD, onde desenvolvemos o uso do git e tratamos com volumes de dados maiores e classes herdadas e coisas complexas na semana retrasada. Como parte importante nesse trabalho era identificar a estrutra de dados e implementa-la corretamente e acho que isso é o mais dificil devido a estruturas terem regras e ser necessário segui-las e saber modificar elas para usar em cada caso, acho que é isso que faz o trabalho mais dificil alem de entender cada peça sem falha.
+Reflexão final: (Seção 5)
+Não achamos nenhuma parte muito complexa no trabalho, já tivemos que lidar com trabalhos mais complicados e complexos durante a graduação. Na nossa concepção, a parte importante nesse trabalho era identificar a estrutura de dados e implementá-la corretamente. Devido às estruturas terem regras particulares que precisam ser seguidas, saber modificar elas para usar em cada caso se torna a parte-chave do trabalho.
 
-Para mim Deque é basicamente uma estrutura que mistura pilha e fila, juntas as duas e assim nasce o deque, uma classe muito util devido a poder entrar no fim e no inicio, além disso permite que gere o fluxo de dois lados, como por exemplo, quando sai do inicio vai para um lugar, e quando sai do final vai para outro, a mesma coisa para quando entra, isso permite ela ser muito versatil e funcional em diversos casos. 
+Na nossa concepção, Deque é basicamente uma estrutura que mistura pilha e fila, uma classe muito útil devido a poder entrar no fim e no início, além disso permite que gere o fluxo de dois lados, como por exemplo, quando sai do início vai para um lugar, e quando sai do final vai para outro, a mesma coisa para quando entra, isso permite ela ser muito versátil e funcional em diversos casos. 
 
-Acredito que a IA fez bem no trabalho a parte bruta de gerar o código e tirar dúvidas porém acredito que ela faz mal por deixar a mente preguiçosa e menos treinada, além, de em alguns casos ignorar as regras das estruras, por exemplo o copilot recomendou a criação do metodo insereEntre em um deque, coisa que não faz muito sentido, então acho esse um dos pontos negativos da ia
+Acreditamos que a IA fez bem no trabalho a parte bruta de gerar o código e tirar dúvidas, porém, acreditamos que ela faz mal por deixar a mente preguiçosa e menos treinada. Além disso, em alguns casos, ela simplesmente ignora as regras das estruturas, um exemplo foi a recomendação do copilot para a criação do metodo insereEntre em um deque, coisa que não faz muito sentido.
