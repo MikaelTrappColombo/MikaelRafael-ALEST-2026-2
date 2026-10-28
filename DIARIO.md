@@ -19,3 +19,13 @@ private mantém header, trailer e tamanho inacessíveis de fora da classe. Sem e
 
 Decisão: Resolvi manter sem o final por não ter o costume de usar e por ser um código "pequeno" e mais "simples" acredito que não seja necessário e o mantive sem
 
+3 Prompt: É possivel colocar um atributo como static e quando uso isso?
+
+Resposta: Sim, é possível. Um atributo static pertence à classe, não a cada objeto: existe uma única cópia, compartilhada por todas as instâncias.
+
+Quando usar
+Constantes: private static final int LIMITE = 100;. É o uso mais comum, e a convenção é escrever em maiúsculas.
+
+Contadores ou dados compartilhados entre todos os objetos da classe, como o totalListas acima.
+
+Decisão: Aderi a utilizar isso por conta que caso seja necessário mudar o LIMITE eu consigo e é compartilhado com todas instancias que é o que eu preciso, devido aos dois deques usarem isso
